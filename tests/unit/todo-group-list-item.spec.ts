@@ -1,15 +1,8 @@
-import {createLocalVue, mount} from "@vue/test-utils";
 import TodoGroupListItem from "@/components/TodoGroupListItem.vue";
-import {BootstrapVue, BootstrapVueIcons, BCardText, BButton} from "bootstrap-vue";
 import {Todo} from "../../types";
+import {factory} from "./utils";
+import {BButton, BCardText} from "bootstrap-vue";
 
-
-const localVue = createLocalVue();
-
-localVue.use(BootstrapVue);
-localVue.use(BootstrapVueIcons);
-
-const factory = (todo: Todo) => mount(TodoGroupListItem, {localVue, propsData: {todo}});
 
 describe("TodoGroupListItem.vue", () => {
   it('should required todo props', function () {
@@ -26,7 +19,7 @@ describe("TodoGroupListItem.vue", () => {
       createAt: new Date()
     };
 
-    const wrapper = factory(todo);
+    const wrapper = factory(TodoGroupListItem, {todo});
 
     const messageWrapper = wrapper.findComponent(BCardText);
 
@@ -41,7 +34,7 @@ describe("TodoGroupListItem.vue", () => {
       createAt: new Date()
     };
 
-    const wrapper = factory(todo);
+    const wrapper = factory(TodoGroupListItem, {todo});
 
     const svgs = wrapper.findAll('.bi-chevron-left.b-icon.bi, .bi-chevron-right.b-icon.bi');
 
@@ -56,7 +49,7 @@ describe("TodoGroupListItem.vue", () => {
       createAt: new Date()
     };
 
-    const wrapper = factory(todo);
+    const wrapper = factory(TodoGroupListItem, {todo});
 
     const svgs = wrapper.findAll('.bi-chevron-left.b-icon.bi, .bi-chevron-right.b-icon.bi');
 
@@ -72,7 +65,7 @@ describe("TodoGroupListItem.vue", () => {
       createAt: new Date()
     };
 
-    const wrapper = factory(todo);
+    const wrapper = factory(TodoGroupListItem, {todo});
 
     const svgs = wrapper.findAll('.bi-chevron-left.b-icon.bi, .bi-chevron-right.b-icon.bi');
 
@@ -88,7 +81,7 @@ describe("TodoGroupListItem.vue", () => {
       createAt: new Date()
     };
 
-    const wrapper = factory(todo);
+    const wrapper = factory(TodoGroupListItem, {todo});
     const button = wrapper.findComponent(BButton);
     button.element.click();
 
@@ -104,7 +97,7 @@ describe("TodoGroupListItem.vue", () => {
       createAt: new Date()
     };
 
-    const wrapper = factory(todo);
+    const wrapper = factory(TodoGroupListItem, {todo});
     const button = wrapper.findComponent(BButton);
     button.element.click();
 

@@ -28,20 +28,19 @@ import { Todo, Group } from "../../types";
 
 @Component({})
 export default class TodoGroupListItem extends Vue {
-  @Prop({ required: true, type: Object as () => Todo }) readonly todo:
-    | Todo
-    | undefined;
+  @Prop({required: true, type: Object as () => Todo})
+  readonly todo!: Todo;
 
   @Emit()
-  moveToGroup(pointer: number): Group | undefined {
-    if (!this.todo) return;
-
+  moveToGroup(pointer: number): Group {
     if (pointer < 0) {
       switch (this.todo.group) {
         case "doing":
           return "done";
         case "done":
           return "doing";
+        default:
+          return this.todo.group;
       }
     } else {
       switch (this.todo.group) {
@@ -49,6 +48,8 @@ export default class TodoGroupListItem extends Vue {
           return "doing";
         case "doing":
           return "done";
+        default:
+          return this.todo.group;
       }
     }
   }
