@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h3>{{ group }}</h3>
+    <h3>{{ groupTitle }}</h3>
     <note-group-list
       :notes="displayNotes"
       @note-group-change="noteGroupChange"
@@ -10,7 +10,7 @@
 
 <script lang="ts">
 import { Component, Emit, Prop, Vue } from "vue-property-decorator";
-import { Group, Note } from "../../types";
+import { Group } from "../../types";
 import NoteGroupList from "@/components/NoteGroupList.vue";
 
 @Component({
@@ -21,11 +21,16 @@ import NoteGroupList from "@/components/NoteGroupList.vue";
 export default class NoteGroup extends Vue {
   @Prop({ required: true, type: String as () => Group })
   readonly group!: Group;
-  @Prop({ required: true, default: [], type: Array as () => Note[] })
-  readonly notes!: Note[];
+
+  @Prop({ required: false, type: String })
+  readonly title!: string;
+
+  get groupTitle() {
+    return this.title || this.group;
+  }
 
   get displayNotes() {
-    return this.notes.filter(value => value.group === this.group);
+    return this.$store.getters.getNoteGroup(this.group);
   }
 
   @Emit()
