@@ -39,7 +39,7 @@ describe('NoteGroupList.vue', function () {
     expect(listWrapArray.at(1).text()).toContain('foo');
   });
 
-  it('should emmit noteGroupChange when list item clicked ', function () {
+  it('should emmit itemClick when list item clicked ', function () {
     const notes: Note[] = [{
       id: 1,
       message: "foo",
@@ -52,6 +52,6 @@ describe('NoteGroupList.vue', function () {
 
     noteWrapper.findComponent(BButton).element.click();  // click done button
 
-    expect(wrapper.emitted()).toHaveProperty('note-group-change', [[{note: notes[0], nextGroup: "done"}, 1, "done"]]);
+    expect(wrapper.emitted()).toHaveProperty('item-click', [[{note: notes[0], nextGroup: "done"}, 1, "done"]]);
   });
 });

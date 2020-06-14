@@ -4,7 +4,7 @@
       <li v-for="note in displayNotes" :key="note.id">
         <note-group-list-item
           :note="note"
-          @move-to-group="noteGroupChange(note.id, $event)"
+          @move-to-group="itemClick(note.id, $event)"
         ></note-group-list-item>
       </li>
     </ul>
@@ -34,7 +34,7 @@ export default class NoteGroupList extends Vue {
   }
 
   @Emit()
-  noteGroupChange(id: number, nextGroup: Group) {
+  itemClick(id: number, nextGroup: Group) {
     const note = this.notes.find(value => value.id === id);
     return { note, nextGroup };
   }
