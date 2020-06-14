@@ -1,15 +1,17 @@
 <template>
   <div>
     <b-list-group v-if="displayNotes.length">
-      <b-list-group-item v-for="note in displayNotes" :key="note.id">
-        <note-group-list-item
-          :note="note"
-          @move-to-group="itemClick(note.id, $event)"
-        ></note-group-list-item>
-      </b-list-group-item>
+      <transition-group name="list">
+        <b-list-group-item v-for="note in displayNotes" :key="note.id" class="flex-column align-items-start">
+          <note-group-list-item
+            :note="note"
+            @move-to-group="itemClick(note.id, $event)"
+          ></note-group-list-item>
+        </b-list-group-item>
+      </transition-group>
     </b-list-group>
     <section v-else>
-      <p>Has Empty Note Item</p>
+      <b-row align-h="center" align-v="center"><p>Has Empty Note Item</p></b-row>
     </section>
   </div>
 </template>
@@ -40,3 +42,14 @@ export default class NoteGroupList extends Vue {
   }
 }
 </script>
+<style>
+.list-enter-active,
+.list-leave-active {
+  transition: all 300ms;
+}
+.list-enter,
+.list-leave-to {
+  opacity: 0;
+  transform: translateY(10px);
+}
+</style>

@@ -52,6 +52,6 @@ describe('NoteGroupList.vue', function () {
 
     noteWrapper.findComponent(BButton).element.click();  // click done button
 
-    expect(wrapper.emitted()).toHaveProperty('item-click', [[{note: notes[0], nextGroup: "done"}, 1, "done"]]);
+    expect(wrapper.emitted()).toHaveProperty('item-click', [[{note: notes[0], nextGroup: "todo"}, 1, "todo"]]);
   });
 });

@@ -1,5 +1,5 @@
-import {MutationTree} from "vuex";
-import {BaseNote, Group, MutationTypes, Note, State} from "../../types";
+import { MutationTree } from "vuex";
+import { BaseNote, Group, MutationTypes, Note, State } from "../../types";
 
 export type Mutations<S = State> = {
   [MutationTypes.INSERT_NOTE](state: State, payload: {note: Note}): void;

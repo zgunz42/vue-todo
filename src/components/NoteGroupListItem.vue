@@ -2,22 +2,26 @@
   <b-card>
     <b-card-text>{{ note.message }}</b-card-text>
     <template v-slot:footer>
-      <b-button
-        v-if="note.group === 'done' || note.group === 'doing'"
-        @click="moveToGroup(-1)"
-        size="sm"
-        variant="primary"
-      >
-        <b-icon icon="chevron-left" aria-hidden="true"></b-icon>
-      </b-button>
-      <b-button
-        v-if="note.group === 'doing' || note.group === 'todo'"
-        @click="moveToGroup(1)"
-        size="sm"
-        variant="primary"
-      >
-        <b-icon icon="chevron-right" aria-hidden="true"></b-icon>
-      </b-button>
+        <b-row align-h="center">
+            <b-button-group>
+                <b-button
+                        v-if="note.group === 'done' || note.group === 'doing'"
+                        @click="moveToGroup(-1)"
+                        size="sm"
+                        variant="primary"
+                >
+                    <b-icon icon="chevron-left" aria-hidden="true"></b-icon>
+                </b-button>
+                <b-button
+                        v-if="note.group === 'doing' || note.group === 'todo'"
+                        @click="moveToGroup(1)"
+                        size="sm"
+                        variant="primary"
+                >
+                    <b-icon icon="chevron-right" aria-hidden="true"></b-icon>
+                </b-button>
+            </b-button-group>
+        </b-row>
     </template>
   </b-card>
 </template>
