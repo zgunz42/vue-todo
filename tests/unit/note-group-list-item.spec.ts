@@ -1,25 +1,25 @@
-import TodoGroupListItem from "@/components/TodoGroupListItem.vue";
-import {Todo} from "../../types";
+import TodoGroupListItem from "@/components/NoteGroupListItem.vue";
+import {Note} from "../../types";
 import {factory} from "./utils";
 import {BButton, BCardText} from "bootstrap-vue";
 
 
-describe("TodoGroupListItem.vue", () => {
-  it('should required todo props', function () {
+describe("NoteGroupListItem.vue", () => {
+  it('should required note props', function () {
     const wrapper = new TodoGroupListItem();
 
-    expect((wrapper.$options.props as any).todo.required).toBeTruthy();
+    expect((wrapper.$options.props as any).note.required).toBeTruthy();
   });
 
-  it('should display todo', function () {
-    const todo: Todo = {
+  it('should display note', function () {
+    const note: Note = {
       id: 1,
       message: 'foo',
       group: "doing",
       createAt: new Date()
     };
 
-    const wrapper = factory(TodoGroupListItem, {todo});
+    const wrapper = factory(TodoGroupListItem, {note});
 
     const messageWrapper = wrapper.findComponent(BCardText);
 
@@ -27,29 +27,29 @@ describe("TodoGroupListItem.vue", () => {
   });
 
   it('should  display <, > button on group doing', function () {
-    const todo: Todo = {
+    const note: Note = {
       id: 1,
       message: 'foo',
       group: "doing",
       createAt: new Date()
     };
 
-    const wrapper = factory(TodoGroupListItem, {todo});
+    const wrapper = factory(TodoGroupListItem, {note});
 
     const svgs = wrapper.findAll('.bi-chevron-left.b-icon.bi, .bi-chevron-right.b-icon.bi');
 
     expect(svgs.length).toEqual(2);
   });
 
-  it('should not display < button on group todo', function () {
-    const todo: Todo = {
+  it('should not display < button on group note', function () {
+    const note: Note = {
       id: 1,
       message: 'foo',
       group: "done",
       createAt: new Date()
     };
 
-    const wrapper = factory(TodoGroupListItem, {todo});
+    const wrapper = factory(TodoGroupListItem, {note});
 
     const svgs = wrapper.findAll('.bi-chevron-left.b-icon.bi, .bi-chevron-right.b-icon.bi');
 
@@ -58,14 +58,14 @@ describe("TodoGroupListItem.vue", () => {
   });
 
   it('should not display > button on group done', function () {
-    const todo: Todo = {
+    const note: Note = {
       id: 1,
       message: 'foo',
       group: "todo",
       createAt: new Date()
     };
 
-    const wrapper = factory(TodoGroupListItem, {todo});
+    const wrapper = factory(TodoGroupListItem, {note});
 
     const svgs = wrapper.findAll('.bi-chevron-left.b-icon.bi, .bi-chevron-right.b-icon.bi');
 
@@ -74,14 +74,14 @@ describe("TodoGroupListItem.vue", () => {
   });
 
   it('should emmit moveToGroup doing when button clicked', function () {
-    const todo: Todo = {
+    const note: Note = {
       id: 1,
       message: 'foo',
       group: "todo",
       createAt: new Date()
     };
 
-    const wrapper = factory(TodoGroupListItem, {todo});
+    const wrapper = factory(TodoGroupListItem, {note});
     const button = wrapper.findComponent(BButton);
     button.element.click();
 
@@ -90,14 +90,14 @@ describe("TodoGroupListItem.vue", () => {
 
 
   it('should emmit moveToGroup done when button clicked', function () {
-    const todo: Todo = {
+    const note: Note = {
       id: 1,
       message: 'foo',
       group: "done",
       createAt: new Date()
     };
 
-    const wrapper = factory(TodoGroupListItem, {todo});
+    const wrapper = factory(TodoGroupListItem, {note});
     const button = wrapper.findComponent(BButton);
     button.element.click();
 

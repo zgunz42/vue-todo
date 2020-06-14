@@ -1,9 +1,9 @@
 <template>
   <b-card>
-    <b-card-text>{{ todo.message }}</b-card-text>
+    <b-card-text>{{ note.message }}</b-card-text>
     <template v-slot:footer>
       <b-button
-        v-if="todo.group === 'done' || todo.group === 'doing'"
+        v-if="note.group === 'done' || note.group === 'doing'"
         @click="moveToGroup(-1)"
         size="sm"
         variant="primary"
@@ -11,7 +11,7 @@
         <b-icon icon="chevron-left" aria-hidden="true"></b-icon>
       </b-button>
       <b-button
-        v-if="todo.group === 'doing' || todo.group === 'todo'"
+        v-if="note.group === 'doing' || note.group === 'todo'"
         @click="moveToGroup(1)"
         size="sm"
         variant="primary"
@@ -24,32 +24,32 @@
 
 <script lang="ts">
 import { Component, Vue, Prop, Emit } from "vue-property-decorator";
-import { Todo, Group } from "../../types";
+import { Note, Group } from "../../types";
 
 @Component({})
-export default class TodoGroupListItem extends Vue {
-  @Prop({required: true, type: Object as () => Todo})
-  readonly todo!: Todo;
+export default class NoteGroupListItem extends Vue {
+  @Prop({ required: true, type: Object as () => Note })
+  readonly note!: Note;
 
   @Emit()
   moveToGroup(pointer: number): Group {
     if (pointer < 0) {
-      switch (this.todo.group) {
+      switch (this.note.group) {
         case "doing":
           return "done";
         case "done":
           return "doing";
         default:
-          return this.todo.group;
+          return this.note.group;
       }
     } else {
-      switch (this.todo.group) {
+      switch (this.note.group) {
         case "todo":
           return "doing";
         case "doing":
           return "done";
         default:
-          return this.todo.group;
+          return this.note.group;
       }
     }
   }

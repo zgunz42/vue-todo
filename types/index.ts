@@ -1,6 +1,6 @@
 export type Group = "todo" | "doing" | "done"
 
-export interface Todo {
+export interface Note {
   id: number;
   message: string;
   createAt: Date;

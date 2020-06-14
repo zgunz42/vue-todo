@@ -1,19 +1,18 @@
-import {createLocalVue, mount} from "@vue/test-utils";
-import TodoGroupList from "@/components/TodoGroupList.vue";
-import {Todo} from "../../types";
+import NoteGroupList from "@/components/NoteGroupList.vue";
+import {Note} from "../../types";
 import {factory} from "./utils";
-import TodoGroupListItem from "@/components/TodoGroupListItem.vue";
+import NoteGroupListItem from "@/components/NoteGroupListItem.vue";
 
-describe('TodoGroupListItem', function () {
+describe('NoteGroupListItem', function () {
   it('should render empty state', function () {
-    const wrapper = factory(TodoGroupList, {
-      todos: []
+    const wrapper = factory(NoteGroupList, {
+      notes: []
     });
     const info = wrapper.find('p');
-    expect(info.text()).toContain('Has Empty Todo Item')
+    expect(info.text()).toContain('Has Empty Note Item')
   });
   it('should order list item on date', function () {
-    const todos: Todo[] = [
+    const notes: Note[] = [
       {
         id: 1,
         message: 'foo',
@@ -28,11 +27,11 @@ describe('TodoGroupListItem', function () {
       }
     ];
 
-    const wrapper = factory(TodoGroupList, {
-      todos
+    const wrapper = factory(NoteGroupList, {
+      notes
     });
 
-    const listWrapArray = wrapper.findAllComponents(TodoGroupListItem);
+    const listWrapArray = wrapper.findAllComponents(NoteGroupListItem);
 
     expect(listWrapArray.at(0).text()).toContain('bar');
     expect(listWrapArray.at(1).text()).toContain('foo');

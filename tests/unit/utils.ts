@@ -1,6 +1,6 @@
 import {createLocalVue, mount} from "@vue/test-utils";
 import {BootstrapVue, BootstrapVueIcons} from "bootstrap-vue";
-import {Todo} from "../../types";
+import {Note} from "../../types";
 import {VueClass} from "vue-class-component/lib/declarations";
 import Vue from "vue/types/vue";
 
