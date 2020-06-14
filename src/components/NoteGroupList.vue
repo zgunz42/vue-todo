@@ -2,7 +2,10 @@
   <div>
     <ul v-if="displayNotes.length">
       <li v-for="note in displayNotes" :key="note.id">
-        <note-group-list-item :note="note"></note-group-list-item>
+        <note-group-list-item
+          :note="note"
+          @move-to-group="noteGroupChange(note.id, $event)"
+        ></note-group-list-item>
       </li>
     </ul>
     <section v-else>
@@ -11,9 +14,9 @@
   </div>
 </template>
 <script lang="ts">
-import { Vue, Component, Prop } from "vue-property-decorator";
+import { Vue, Component, Prop, Emit } from "vue-property-decorator";
 import NoteGroupListItem from "@/components/NoteGroupListItem.vue";
-import { Note } from "../../types";
+import { Group, Note } from "../../types";
 
 @Component({
   components: {
@@ -28,6 +31,12 @@ export default class NoteGroupList extends Vue {
     return this.notes.sort((a, b) =>
       a.createAt > b.createAt ? 1 : a.createAt === b.createAt ? 0 : -1
     );
+  }
+
+  @Emit()
+  noteGroupChange(id: number, nextGroup: Group) {
+    const note = this.notes.find(value => value.id === id);
+    return { note, nextGroup };
   }
 }
 </script>
