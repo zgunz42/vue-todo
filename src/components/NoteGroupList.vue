@@ -1,13 +1,13 @@
 <template>
   <div>
-    <ul v-if="displayNotes.length">
-      <li v-for="note in displayNotes" :key="note.id">
+    <b-list-group v-if="displayNotes.length">
+      <b-list-group-item v-for="note in displayNotes" :key="note.id">
         <note-group-list-item
           :note="note"
           @move-to-group="itemClick(note.id, $event)"
         ></note-group-list-item>
-      </li>
-    </ul>
+      </b-list-group-item>
+    </b-list-group>
     <section v-else>
       <p>Has Empty Note Item</p>
     </section>

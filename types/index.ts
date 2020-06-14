@@ -24,3 +24,12 @@ export type State = {
 export type Getters = {
   getNoteGroup(state: State): (group: Group) => Note[]
 }
+
+export enum ActionTypes {
+   ADD_NOTE = "ADD_NOTE",
+   FAST_ADD_NOTE = "FAST_ADD_NOTE"
+}
+
+export enum MutationTypes {
+  INSERT_NOTE = "INSERT_NOTE"
+}

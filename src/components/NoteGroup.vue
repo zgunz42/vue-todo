@@ -1,6 +1,13 @@
 <template>
   <div>
-    <h3>{{ groupTitle }}</h3>
+    <b-row align-content="end" class="mb-2 py-3 mt-3">
+      <b-col md="8">
+        <h3>{{ groupTitle }}</h3>
+      </b-col>
+      <b-col md="4">
+        <slot name="actions" v-b-modal.modal-prevent-close></slot>
+      </b-col>
+    </b-row>
     <note-group-list
       :notes="displayNotes"
       @note-group-change="noteGroupChange"
