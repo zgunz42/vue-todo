@@ -27,9 +27,11 @@ export type Getters = {
 
 export enum ActionTypes {
    ADD_NOTE = "ADD_NOTE",
-   FAST_ADD_NOTE = "FAST_ADD_NOTE"
+   FAST_ADD_NOTE = "FAST_ADD_NOTE",
+   MOVE_TO_GROUP = "MOVE_TO_GROUP",
 }
 
 export enum MutationTypes {
-  INSERT_NOTE = "INSERT_NOTE"
+  INSERT_NOTE = "INSERT_NOTE",
+  UPDATE_NOTE = "UPDATE_NOTE"
 }

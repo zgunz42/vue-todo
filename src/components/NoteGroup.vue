@@ -10,14 +10,14 @@
     </b-row>
     <note-group-list
       :notes="displayNotes"
-      @note-group-change="noteGroupChange"
+      @item-click="noteGroupChange"
     ></note-group-list>
   </div>
 </template>
 
 <script lang="ts">
 import { Component, Emit, Prop, Vue } from "vue-property-decorator";
-import { Group } from "../../types";
+import { ActionTypes, Group, Note } from "../../types";
 import NoteGroupList from "@/components/NoteGroupList.vue";
 
 @Component({
@@ -41,8 +41,8 @@ export default class NoteGroup extends Vue {
   }
 
   @Emit()
-  noteGroupChange(event: object) {
-    return event;
+  noteGroupChange({ note, nextGroup }: { note: Note; nextGroup: Group }) {
+    return this.$store.dispatch(ActionTypes.MOVE_TO_GROUP, { note, group: nextGroup });
   }
 }
 </script>

@@ -36,7 +36,7 @@ export default class NoteGroupListItem extends Vue {
     if (pointer < 0) {
       switch (this.note.group) {
         case "doing":
-          return "done";
+          return "todo";
         case "done":
           return "doing";
         default:

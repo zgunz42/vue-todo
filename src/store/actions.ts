@@ -1,4 +1,4 @@
-import {ActionTypes, MutationTypes, Note, State} from "../../types";
+import {ActionTypes, Group, MutationTypes, Note, State} from "../../types";
 import {ActionContext} from "vuex";
 
 export const actions = {
@@ -15,5 +15,9 @@ export const actions = {
       };
 
       dispatch(ActionTypes.ADD_NOTE, note)
+  },
+
+  [ActionTypes.MOVE_TO_GROUP]({commit}: ActionContext<State, any>, {note, group}: {note: Note, group: Group}) {
+    commit(MutationTypes.UPDATE_NOTE, {note, group})
   }
 };
