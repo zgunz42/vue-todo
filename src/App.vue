@@ -1,17 +1,30 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png" />
-    <HelloWorld msg="Welcome to Your Vue.js + TypeScript App" />
+    <b-container>
+      <b-row :no-gutters="false" class="mt-12">
+        <b-col md="4">
+          <todo-note-group group="todo"></todo-note-group>
+        </b-col>
+        <b-col md="4">
+          <note-group group="doing"></note-group>
+        </b-col>
+        <b-col md="4">
+          <note-group group="done"></note-group>
+        </b-col>
+      </b-row>
+    </b-container>
   </div>
 </template>
 
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
-import HelloWorld from "./components/HelloWorld.vue";
+import NoteGroup from "@/components/NoteGroup.vue";
+import TodoNoteGroup from "@/components/TodoNoteGroup.vue";
 
 @Component({
   components: {
-    HelloWorld
+    NoteGroup,
+    TodoNoteGroup
   }
 })
 export default class App extends Vue {}
@@ -22,8 +35,5 @@ export default class App extends Vue {}
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
 }
 </style>
