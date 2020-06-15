@@ -20,6 +20,7 @@
 import { Component, Vue } from "vue-property-decorator";
 import NoteGroup from "@/components/NoteGroup.vue";
 import TodoNoteGroup from "@/components/TodoNoteGroup.vue";
+import { Group, MutationTypes, Note } from "../types";
 
 @Component({
   components: {
@@ -27,7 +28,38 @@ import TodoNoteGroup from "@/components/TodoNoteGroup.vue";
     TodoNoteGroup
   }
 })
-export default class App extends Vue {}
+export default class App extends Vue {
+  mounted(): void {
+    this.$store.subscribe((mutation, state) => {
+      if (mutation.type === MutationTypes.INSERT_NOTE) {
+        const { note }: { note: Note } = mutation.payload;
+        const excerpt = note.message.substr(0, 4);
+        this.$bvToast.toast(
+          `Todo ${excerpt}... has been created at ${note.createAt.toISOString()}`,
+          {
+            title: `Todo Added`,
+            variant: "info",
+            solid: true
+          }
+        );
+      }
+      if (mutation.type === MutationTypes.UPDATE_NOTE) {
+        const { note, group }: { note: Note; group: Group } = mutation.payload;
+        const excerpt = note.message.substr(0, 4);
+        this.$bvToast.toast(
+          `Todo ${excerpt}... has been moved from ${
+            note.group
+          } into ${group} at ${note.createAt.toISOString()}`,
+          {
+            title: `Todo Moved`,
+            variant: "info",
+            solid: true
+          }
+        );
+      }
+    });
+  }
+}
 </script>
 
 <style>
